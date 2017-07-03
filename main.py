@@ -4,49 +4,30 @@ from flask import Flask, request, redirect, render_template
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-signup_form = """
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <style>
-                form {{
-                    background-color: #eee;
-                    padding: 20px;
-                    margin: 0 auto;
-                    width: 540px;
-                    font: 16px sans-serif:
-                    border-radius: 15px;
-                }}
-            </style>
-        </head>
-    <body>
-        <form action="/" method = 'POST'>
-            <label>Username:
-                <input type="text" name="username">
-            </label>
 
-            <label>Password:
-                <input type="password" name="password">
-            </label>
-
-            <label>Verify password:
-                <input type="password" name="pswd_verify">
-            </label>
-
-            <label>Email:
-                <input type="text" name="email">
-            </label>
-            
-            <label>
-                <input type="submit">
-            </label>
-        </form>        
-    </body>
-</html>
-"""
 
 @app.route("/")
-def main():
-    return signup_form 
+def index():
+    return render_template('welcome.html')
+
+
+@app.route("/signup")
+def signup():
+    if (request.form['username']) < 3 and (request.form['username'])>20:
+        error1 = "Please enter a valid username."
+        return redirect("/?error=" + error1)
+    if (request.form['password']) < 3 and (request.form['password'])>20:
+        error2 = "Please enter a valid username."
+        return redirect("/?error=" + error2)
+    if (request.form['verify_password']) != (request.form['password']):
+        error3 = "Password does not match."
+        return redirect("/?error=" + error3)
+    if (request.form['email']) < 3 and (request.form['email'])>20:
+        error4 = "Please enter a valid email address."
+        return redirect("/?error=" + error4)
+    if "@" not in (request.form['email']) or if "." not in (request.form['email']):
+        error4 = "Please enter a valid email address."
+        return redirect("/?error=" + error4)
+    return render_template('signup.html')
 
 app.run()
