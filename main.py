@@ -4,6 +4,10 @@ from flask import Flask, request, redirect, render_template
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+username = request.form['username']
+password = request.form['password']
+verify_password = request.form['verify_password']
+email = request.form['email']
 
 
 @app.route("/")
@@ -13,25 +17,25 @@ def index():
 
 @app.route("/signup", methods=['POST'])
 def signup():
-    if {{'username'}} < 3 or {{'username'}} >20:
+    if username < 3 or username >20:
         error1 = "Please enter a valid username."
-        return redirect("/?error=" + error1)
+        return render_template('signup.html'), error1
 
-    if {{'password'}} < 3 or {{'password'}}>20:
+    if password < 3 or password>20:
         error2 = "Please enter a valid username."
-        return redirect("/?error=" + error2)
+        return render_template('signup.html'), error2
 
-    if {{'verify_password'}} != {{'password'}}:
+    if verify_password != password:
         error3 = "Password does not match."
-        return redirect("/?error=" + error3)
+        return render_template('signup.html'), error3
 
-    if (request.form['email']) < 3 or (request.form['email'])>20:
+    if email < 3 or email>20:
         error4 = "Please enter a valid email address."
-        return redirect("/?error=" + error4)
+        return render_template('signup.html'), error4
 
-    if "@" not in {{'email'}} or if "." not in {{'email'}}:
+    if "@" not in email or if "." not in email:
         error4 = "Please enter a valid email address."
-        return redirect("/?error=" + error4)
-    return render_template('signup.html')
+        return render_template('signup.html'), error4
+
 
 app.run()
