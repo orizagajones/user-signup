@@ -1,22 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <form action="/" method = 'POST'>
-            <label>Username:
-                <input type="text" name="username">
-            </label>
-            <label>Password:
-                <input type="password" name="password">
-            </label>
-            <label>Verify Password:
-                <input type="password" name="pswd_verify">
-            </label>
-            <label>Email:
-                <input type="text" name="email">
-            </label>
-            <label>
-                <input type="submit">
-            </label>
-        </form>        
+
+<form method = 'POST'>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label for "username">Username:</label>
+                </td>
+                <td>        
+                    <input type="text" name="username" value>
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for "password">Password:</label>
+                </td>
+                <td>
+                    <input type="password" name="password">
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Verify password:</label>
+                </td>
+                <td>
+                    <input type="password" name="verify_password">
+                    <span class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for "email">Email:</label>
+                </td>
+                <td>
+                    <input type="text" name="email">
+                </td>    
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit">
+ </form>      
 
 {% endblock %}

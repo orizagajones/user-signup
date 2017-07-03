@@ -24,15 +24,19 @@ signup_form = """
             <label>Username:
                 <input type="text" name="username">
             </label>
-            <label>
+
+            <label>Password:
                 <input type="password" name="password">
             </label>
-            <label>
+
+            <label>Verify password:
                 <input type="password" name="pswd_verify">
             </label>
-            <label>
+
+            <label>Email:
                 <input type="text" name="email">
             </label>
+            
             <label>
                 <input type="submit">
             </label>
