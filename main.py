@@ -33,7 +33,7 @@ def signup():
         error4 = "Please enter a valid email address."
         return render_template('signup.html'), error4
 
-    if "@" not in email or if "." not in email:
+    if "@" not in email or "." not in email:
         error4 = "Please enter a valid email address."
         return render_template('signup.html'), error4
 
