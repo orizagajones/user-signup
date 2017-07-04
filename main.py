@@ -12,7 +12,7 @@ email = request.form['email']
 
 @app.route("/")
 def index():
-    return render_template('welcome.html')
+    return render_template('signup.html')
 
 
 @app.route("/signup", methods=['POST'])
