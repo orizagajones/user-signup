@@ -33,4 +33,7 @@ def signup():
         error4 = "Please enter a valid email address."
         return render_template('signup.html', error4 = error4)
 
+    else:
+        return render_template('welcome.html')
+
 app.run()
