@@ -3,51 +3,27 @@
 {% block content %}
 
 <div>
-    <form method = 'POST'>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <label for "username">Username:</label>
-                    </td>
-                    <td>        
-                        <input type="text" name="username" value="{{ username }}" />
-                        <p class="error">{{ error1 }}</p>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <td>
-                        <label for "password">Password:</label>
-                    </td>
-                    <td>
-                        <input type="password" name="password" value="{{ password }}" />
-                        <p class="error">{{ error2 }}</p>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <td>
-                        <label>Verify password:</label>
-                    </td>
-                    <td>
-                        <input type="password" name="verify_password" value="{{ verify_password }}" />
-                        <p class="error">{{ error3 }}</p>
-                    </td>
-                </tr>
-                <br>
-                <tr>
-                    <td>
-                        <label for "email">Email:</label>
-                    </td>
-                    <td>
-                        <input type="text" name="email" value="{{ email }}" />
-                        <p class="error">{{ error4 }}</p>
-                    </td>    
-                </tr>
-                <br>
-            </tbody>
-        </table>
+    <form method = ['POST', 'GET']>
+        <label for "username">Username:
+            <input type="text" name="username" value="{{ username }}" />
+            <p class="error">{{ error1 }}</p>
+        </label>
+
+        <label for "password">Password:
+        <input type="password" name="password" value="{{ password }}" />
+        <p class="error">{{ error2 }}</p>
+        </label>
+
+        <label>Verify password:
+            <input type="password" name="verify_password" value="{{ verify_password }}" />
+            <p class="error">{{ error3 }}</p>
+        </label>
+        
+        <label for "email">Email:
+            <input type="text" name="email" value="{{ email }}" />
+            <p class="error">{{ error4 }}</p>
+            </label>
+
         <input type="submit">
     </form>      
 </div>
