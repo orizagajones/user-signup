@@ -5,7 +5,8 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 
 @app.route("/signup", methods= ['post', 'get'])
-# this tries to validate the info, generating any new error messages in teh process.
+# this tries to validate the info, generating any new 
+# error messages in the process.
 # if no errors, it renders the welcome template
 def signup():
     error1 = 'Please enter a username between 3-20 characters without spaces.'
@@ -31,7 +32,9 @@ def signup():
 
 
 @app.route("/", methods=['post', 'get'])
-#this function gets error messages, username and email info from the form with GET requests, and renders a form displaying errors and populating the username and email forms. 
+#this function gets error messages, username and email info 
+# from the form with GET requests, and renders a form displaying 
+# errors and populating the username and email forms. 
 def index():
     return render_template('signup.html')
 
