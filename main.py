@@ -4,57 +4,35 @@ from flask import Flask, request, redirect, render_template
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-
-@app.route("/signup", methods=['POST','GET'])
+@app.route("/signup", methods= ['post', 'get'])
+# this tries to validate the info, generating any new error messages in teh process.
+# if no errors, it renders the welcome template
 def signup():
-    if check_username == False:
-        error_message = "Please enter a valid username."
-        return (render_template('signup.html'), error_message)
-    elif check_password == False:
-        error_message = "Please enter a valid password."
-        return (render_template('signup.html'), error_message)
-    elif dblcheck_password == False:
-        error_message = "Password does not match."
-        return (render_template('signup.html'), error_message)
-    elif check_email == False:
-        error_message = "Please enter a valid email address."
-        return (render_template('signup.html'), error_message)
+    error1 = 'Please enter a username between 3-20 characters without spaces.'
+    error2 = 'Please enter a password between 3-2- characters without spaces.'
+    error3 = 'Please reenter your password.'
+    error4 = 'Please enter a valid email address.'
+
+    u_name = request.form('username')
+    p_word = request.form('password')
+    v_word = request.form('verify_password')
+    email = request.form('email') 
+
+    if len(u_name) < 3 or len(u_name) > 20 or ' ' in u_name:
+        return redirect("/?error=" + error1)
+    if len(p_word) <3 or len(p_word) > 20 or ' ' in p_word:
+        return redirect("/?error=" + error2)
+    if v_word != p_word:
+        return redirect("/?error=" + error3)
+    if ' ' in email or '@' not in email or '.' not in email:
+        return redirect("/?error=") + error4)
     else: 
-        return (render_template('welcome.html'))
-
-
-def check_username():
-    username = request.form['username']
-    if len(username) < 3 or len(username) >20 or ' ' in username:
-        return False
-    else: 
-        return True
-
-def check_password():
-    password = request.form['password']
-    if len(password) < 3 or len(password) > 20 or " " in password:
-        return False
-    else:
-        return True
-
-def dblcheck_password():
-    verify_password = request.form['verify_password']
-    if verify_password != password:
-        return False
-    else:
-        return True
-
-def check_email():
-    email = request.form['email']
-    if email != "" and len(email) < 3 or len(email) > 20 or " " in email or "@" not in email or "." not in email:
-        return False
-    else:
-        return True
+        return render_template ('welcome.html')
 
 
 @app.route("/", methods=['post', 'get'])
+#this function gets error messages, username and email info from the form with GET requests, and renders a form displaying errors and populating the username and email forms. 
 def index():
-    encoded_error = request.args.get("error")
-    return render_template('signup.html'), encoded_error and cgi.escape(encoded_error, quote=True)
+    return render_template('signup.html')
 
 app.run()
