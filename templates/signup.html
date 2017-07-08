@@ -3,36 +3,51 @@
 {% block content %}
 
 <div>
-    <form method = ['POST', 'GET']>
-        <label for "username">Username:
-            <input type="text" name="username" value="{{ username }}" />
-            {% if username|length < 3 or username|length > 20: %}
-            <p class="error">{{ error1 }}</p>
-            {% endif %}
-        </label>
-
-        <label for "password">Password:
-            <input type="password" name="password" value="{{ password }}" />
-            {% if password|length < 3 or password|length > 20 or ' ' in password: %}
-            <p class="error">{{ error2 }}</p>
-            {% endif %}
-        </label>
-
-        <label>Verify password:
-            <input type="password" name="verify_password" value="{{ verify_password }}" />
-            {% if verify_password != password: %}
-            <p class="error">{{ error3 }}</p>
-            {% endif %}
-        </label>
-        
-        <label for "email">Email:
-            <input type="text" name="email" value="{{ email }}" />
-            {% if ' ' in email or '@' not in email or '.' not in email: %}
-            <p class="error">{{ error4 }}</p>
-            {% endif %}
+    <form class = 'form' action = '/signup' method = 'POST'>
+        <div>
+            <label for = "username">Username:
+                <input type="text" name="username" value="{{ username }}" />
+                {% if error1: %}
+                <p class="error">{{ error1 }}</p>
+                {% endif %}
             </label>
+        </div>
+        <div>
+            <label for = "password">Password:
+                <input type="password" name="password" value="{{ password }}" />
+                {% if error2: %}
+                <p class="error">{{ error2 }}</p>
+                {% endif %}
+            </label>
+        </div>
+        <div>
+            <label for = "verify_password">Verify password:
+                <input type="password" name="verify_password" value="{{ verify_password }}" />
+                {% if error3: %}
+                <p class="error">{{ error3 }}</p>
+                {% endif %}
+            </label>
+        </div>
+        <div>
+            <label for = "email">Email (optional):
+                <input type="text" name="email" value="{{ email }}" />
+                {% if error4: %}
+                <p class="error">{{ error4 }}</p>
+                {% endif %}
+            </label>
+        </div>
 
         <input type="submit">
     </form>      
 </div>
+
+{% if error: %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+
 {% endblock %}
+
+
+
+
